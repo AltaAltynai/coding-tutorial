@@ -64,15 +64,28 @@ class BasicsDescribeSpec : DescribeSpec({
             it("returns max") {
                 maxOf(min, max) shouldBe max
             }
+        }
+
+            // Write minOf function
+        context("minOf function") {
+            val name1 = "Alice"
+            val name2 = "Bob"
 
             it("returns min") {
-                minOf(min, max) shouldBe 0
-                minOf(min-max, max, min) shouldBe -100 // A blind guess which seems to be working
-                minOf(min-max, max, min) shouldBe min-max // A blind guess which seems to be working
+                minOf(name1.length, name2.length) shouldBe 3
             }
         }
 
-        // Write minOff function
+            // Write *minOf function
+        context ("*minOf function") {
+            val list1 = listOf("x", "y", "z")
+            val list2 = listOf("a", "b", "c", "d")
+            val list3 = listOf("a", "b")
+
+            it("returns min") {
+                minOf(list1, list2, list3, compareBy { it.size }) shouldBe list3
+            }
+        }
 
         context("when expression") {
             describe(1) shouldBe "One"
@@ -90,9 +103,18 @@ class BasicsDescribeSpec : DescribeSpec({
             it("") {
                 fruits.count() shouldBe 4
                 fruits shouldContain "Apple"
-
                 count(fruits) shouldBe 4
             }
         }
+
+            // Write mapOf function
+        context ("mapOf function") {
+            val fruits = listOf("Avocado", "Banana", "Apple", "Avocado")
+
+            it("returns mapOf<String, Int>") {
+               fruits.groupingBy{it}.eachCount()["Avocado"] shouldBe 2
+            }
+        }
+
     }
 })
