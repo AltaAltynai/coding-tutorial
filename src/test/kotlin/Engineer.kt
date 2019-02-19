@@ -1,2 +1,1 @@
-open class Engineer(name: String, Department: String) {
-}
+open class Engineer(name: String, Department: String)

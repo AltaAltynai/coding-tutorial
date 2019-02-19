@@ -67,7 +67,7 @@ class BasicsDescribeSpec : DescribeSpec({
             }
         }
 
-            // Write minOf function: 2 values
+            // Write minOf 2 values
         context("minOf function") {
             val name1 = "Alice"
             val name2 = "Bob"
@@ -77,9 +77,9 @@ class BasicsDescribeSpec : DescribeSpec({
             }
         }
 
-            // Write *minOf function: 3 values
+            // Write minOf 3 values
 
-        context("*minOf function: 3 values_1") {
+        context("minOf function: 3 values_1") {
             val x:Int = -3
             val y:Int = 5
             val z:Int = 10
@@ -99,7 +99,7 @@ class BasicsDescribeSpec : DescribeSpec({
             }
         }
 
-        context("*minOf function: 3 values_2") {
+        context("minOf function: 3 values_2") {
             val a = 1
             val b = 4
             val c = -1
@@ -129,7 +129,7 @@ class BasicsDescribeSpec : DescribeSpec({
             }
         }
 
-            // Write mapOf function for fruits
+            // mapOf function for fruits
         context("collections: mapOf function") {
             val fruits = listOf("Banana", "Apple", "Avocado", "Watermelon", "Avocado")
 
@@ -138,7 +138,7 @@ class BasicsDescribeSpec : DescribeSpec({
             }
         }
 
-        // QA : Engineer check boundary values
+        // QA : Engineer check boundary values for releaseTesting
         context("boundary values") {
 
             val features = arrayListOf("Homepage", "Registration flow", "Login", "Forgot password")
@@ -165,7 +165,7 @@ class BasicsDescribeSpec : DescribeSpec({
     }
 })
 
-// MinOf vararg function
+// Write minOf vararg function
 fun minNumber(vararg numbers: Int) : Int? {
     var smallest = 0
 
@@ -181,7 +181,7 @@ fun minNumber(vararg numbers: Int) : Int? {
     }
 }
 
-// collection.map
+// collection.map method
 class User (val name: String, val role: String)
 
 fun main(args: Array<String>) {
