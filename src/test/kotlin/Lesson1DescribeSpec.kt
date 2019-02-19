@@ -180,3 +180,15 @@ fun minNumber(vararg numbers: Int) : Int? {
         smallest
     }
 }
+
+// collection.map
+class User (val name: String, val role: String)
+
+fun main(args: Array<String>) {
+
+    val users = listOf(User("Angela", "Admin"), User("Monika", "Product Owner"))
+
+    val map = users.map {it.name to it.role}.toMap()
+
+    println(map)
+}
