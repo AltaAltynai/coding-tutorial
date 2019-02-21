@@ -67,48 +67,6 @@ class BasicsDescribeSpec : DescribeSpec({
             }
         }
 
-            // Write minOf 2 values
-        context("minOf function") {
-            val name1 = "Alice"
-            val name2 = "Bob"
-
-            it("returns min") {
-                minOf(name1.length, name2.length) shouldBe 3
-            }
-        }
-
-            // Write minOf 3 values
-
-        context("minOf function: 3 values_1") {
-            val x:Int = -3
-            val y:Int = 5
-            val z:Int = 10
-            it("returns min") {
-
-                val min: Int = if(x <= y && x <= z) {
-                    x
-                }
-                else if(z <= x && z <= y) {
-                    z
-                }
-                else {
-                    y
-                }
-
-                min shouldBe -3
-            }
-        }
-
-        context("minOf function: 3 values_2") {
-            val a = 1
-            val b = 4
-            val c = -1
-
-            it("returns min") {
-                minOf(a, b, c, compareBy { it }) shouldBe c
-            }
-        }
-
         context("when expression") {
             describe(1) shouldBe "One"
             describe("Hello") shouldBe "Greeting"
@@ -129,66 +87,4 @@ class BasicsDescribeSpec : DescribeSpec({
             }
         }
 
-            // mapOf function for fruits
-        context("collections: mapOf function") {
-            val fruits = listOf("Banana", "Apple", "Avocado", "Watermelon", "Avocado")
 
-            it("returns mapOf<String, Int>") {
-               fruits.groupingBy{it}.eachCount()["Avocado"] shouldBe 2
-            }
-        }
-
-        // QA : Engineer check boundary values for releaseTesting
-        context("boundary values") {
-
-            val features = arrayListOf("Homepage", "Registration flow", "Login", "Forgot password")
-
-            it ("checks releaseTesting Type")
-            QA(3, "Altynai", "QA").releaseTesting(features).shouldBeTypeOf<Boolean>()
-
-            it("checks daysLeft = features.size / 2")
-            QA(2, "Altynai", "QA").releaseTesting(features) shouldBe true
-
-            it("checks daysLeft > features.size / 2")
-            QA(10, "Altynai", "QA").releaseTesting(features) shouldBe true
-
-            it("checks daysLeft = 0")
-            QA(0, "Altynai", "QA").releaseTesting(features) shouldBe false
-
-            it("checks daysLeft < 0")
-            QA(-10, "Altynai", "QA").releaseTesting(features) shouldBe false
-
-            it("checks daysLeft < features.size / 2")
-            QA(1, "Altynai", "QA").releaseTesting(features) shouldBe false
-        }
-
-    }
-})
-
-// Write minOf vararg function
-fun minNumber(vararg numbers: Int) : Int? {
-    var smallest = 0
-
-    return if (numbers.isEmpty()) {
-        println("Error! Data input is required.")
-        return null
-    }  else {
-        smallest = numbers[0]
-        for (i in numbers) if (smallest > i) {
-            smallest = i
-        }
-        smallest
-    }
-}
-
-// collection.map method
-class User (val name: String, val role: String)
-
-fun main(args: Array<String>) {
-
-    val users = listOf(User("Angela", "Admin"), User("Monika", "Product Owner"))
-
-    val map = users.map {it.name to it.role}.toMap()
-
-    println(map)
-}
