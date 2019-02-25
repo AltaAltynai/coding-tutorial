@@ -167,6 +167,27 @@ class BasicsDescribeSpec : DescribeSpec({
             QA(1, "Altynai", "QA").releaseTesting(features) shouldBe false
         }
 
+        //Strings check
+        context("unique letters") {
+
+            it("checks if upper case = low case")
+            uniqueChars("Google") shouldBe false
+            uniqueChars("TRumP") shouldBe true
+
+            it("checks whitespace is not considered")
+            uniqueChars("  King") shouldBe true
+            uniqueChars("W o o d o o ") shouldBe false
+        }
+
+        context("two strings"){
+            it("checks if upper case = low casee")
+            twoStrings("caT", "tac") shouldBe true
+            twoStrings("black", "WHITE") shouldBe false
+
+            it("checks if whitespace is considered")
+            twoStrings("S W I F T", "TFIWS") shouldBe false
+        }
+
     }
 })
 
@@ -224,4 +245,26 @@ fun main() {
     val users = listOf(User("Angela", "Admin"), User("Monika", "Product Owner"))
     val map = users.map {it.name to it.role}.toMap() //{Angela=Admin, Monika=Product Owner}
     println(map)
+}
+
+// true only if unique letters string
+fun uniqueChars(someString: String): Boolean {
+
+    val charArray = someString
+            .toLowerCase()
+            .replace(" ", "")
+            .toCharArray()
+    charArray.sort(0, charArray.size)
+
+    for (char in 0 until charArray.size - 1) {
+        if (charArray[char] != charArray[char + 1] && charArray.isNotEmpty()) continue
+        return false
+    }
+    return true
+}
+
+// true only if string = gnirts
+fun twoStrings(string1: String, string2: String) : Boolean {
+    return string1.toLowerCase().reversed() ==
+            string2.toLowerCase()
 }
