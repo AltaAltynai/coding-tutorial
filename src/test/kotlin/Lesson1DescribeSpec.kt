@@ -317,3 +317,17 @@ fun twoStrings1(string1: String, string2: String) : Boolean {
     return string1.length == string2.length && string1.reversed() == string2
 
 }
+
+//reversed strings 3
+
+fun twoStrings2(string1: String, string2: String) : Boolean {
+    return string1.length == string2.length && (string1 + string2).contains(string1)
+}
+
+//reversed string 4
+
+fun twoStrings3(string1: String, string2: String) : Boolean {
+    return string1.length == string2.length &&
+            (string1 + string2).indexOf(string1, 0, ignoreCase = true) != -1
+}
+
