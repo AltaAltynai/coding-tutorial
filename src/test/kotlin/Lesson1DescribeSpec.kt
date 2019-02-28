@@ -188,6 +188,32 @@ class BasicsDescribeSpec : DescribeSpec({
             twoStrings("S W I F T", "TFIWS") shouldBe false
         }
 
+        context("unique chars1") {
+            it("checks input data are unique letters")
+            uniqueChars1("Kotlin") shouldBe true
+
+            it("checks input are not unique letters")
+            uniqueChars1("Java") shouldBe false
+
+            it("checks input data are not unique letters and have different letter cases")
+            uniqueChars1("JavA") shouldBe false
+
+            it("checks output data type")
+            uniqueChars1("Type").shouldBeTypeOf<Boolean>()
+        }
+
+        context("reversed strings 2") {
+            it("checks input data when one string is the other one reversed")
+            twoStrings1("kotlin", "niltok") shouldBe true
+
+            it("checks input data when one string is not the other one reversed")
+            twoStrings1("kotlin", "java") shouldBe false
+
+            it("checks output data type")
+            twoStrings1("Type", "Type").shouldBeTypeOf<Boolean>()
+
+        }
+
     }
 })
 
@@ -263,8 +289,31 @@ fun uniqueChars(someString: String): Boolean {
     return true
 }
 
-// true only if string = gnirts
+//unique letters 2
+
+fun uniqueChars1(someString: String): Boolean {
+
+    val charArray = someString.toLowerCase().toCharArray()
+
+    for (i in 0 until charArray.size - 1) {
+        for (j in i + 1 until charArray.size)
+            if (charArray[i] == charArray[j])
+                return false
+    }
+    return true
+}
+
+//reversed strings 1
+
 fun twoStrings(string1: String, string2: String) : Boolean {
     return string1.toLowerCase().reversed() ==
             string2.toLowerCase()
+
+}
+
+//reversed strings 2
+
+fun twoStrings1(string1: String, string2: String) : Boolean {
+    return string1.length == string2.length && string1.reversed() == string2
+
 }
