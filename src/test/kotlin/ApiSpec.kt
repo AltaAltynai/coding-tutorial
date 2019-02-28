@@ -6,6 +6,7 @@ import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.fuel.moshi.responseObject
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.FeatureSpec
+import models.Comments
 import models.Post
 
 const val POSTS_COUNT = 100
@@ -16,6 +17,8 @@ class ApiSpec : FeatureSpec({
 
         val postsCount = 106
         val newPost = Post(0.0, postsCount + 1.0, "new one", "new one")
+        val newComment = Comments(0.0, 0.0, "new one")
+
 
         scenario("gets all posts").config(enabled = false) {
             val (request, response, result) = Fuel.get("/posts")
@@ -42,11 +45,21 @@ class ApiSpec : FeatureSpec({
             result.component1() shouldBe newPost
         }
 
-        scenario("deletes the last post") {
+        scenario("deletes the last post").config(enabled = false) {
             val (_, response, result) = "/posts/105.0"
                     .httpDelete()
                     .responseString()
             response.statusCode shouldBe 200
         }
+
+        scenario("adds new comment") {
+            val (_, response, result) = "/comments"
+                    .httpPost(listOf("userId" to newComment.userdId, "id" to newComment.id,
+                            "body" to newComment.body))
+                    .responseObject<Post>()
+            response.statusCode shouldBe 201
+            result.component1() shouldBe newComment
+        }
+
     }
 })
